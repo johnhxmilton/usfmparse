@@ -313,14 +313,17 @@ class AccordanceWalker(UsfmWalker):
             # This keeps spaces between consecutive closing quotes like " ' "
             if (self.separate_quotes and text in self.QUOTE_CHARS
                     and self.last_char in self.QUOTE_CHARS):
-                retval = ' ' + text
+                retval = '\u202f' + text # we use a narrow no-break space unicode 202f
             else:
                 retval = text
             self.suppressNextSpace = False
         else:
+            if (self.separate_quotes and text in self.QUOTE_CHARS
+                    and self.last_char in self.QUOTE_CHARS):
+                retval = '\u202f' + text
             # When separate_quotes is disabled, glue consecutive closing
             # quotes together without spaces (e.g. "'" not " ' ")
-            if (not self.separate_quotes and text in self.QUOTE_CHARS
+            elif (not self.separate_quotes and text in self.QUOTE_CHARS
                     and self.last_char in self.QUOTE_CHARS):
                 retval = text
             else:

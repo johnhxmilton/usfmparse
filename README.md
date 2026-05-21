@@ -418,9 +418,15 @@ I added another marker, \pb, to test48.usfm. Can you change the code so that it 
 
 I have somehow messed up test48. It is not passing, because of a problem with paragraph characters. Can you help me figure out what I have done wrong?
 
-## Bug 28
+### Bug 28
 test49 is failing because the book name is incorrect. It should be 'Gen.' but instead it is 'e'. Can you fix this?
 It happens because the parser is seeing the \ide marker and it thinks it is \id e (like \id Gen)
+
+### Bug 29
+test50.usfm fails because of many new markers that the lexer/parser is not supporting.
+
+### Bug 30
+I have modified usfmtools/usfmwalker.py so that instead of putting a regular space character between quotation characters in the case of separate_quotes = True, I made it a Unicode 202f, narrow no-break space. I modified usfmToAccordanceTests/test25.acc to reflect this change, but now the test fails. It appears that the usfmwalker.py outputs one narrow space instead of two in the context of a " ' " sequence of closing quotations marks. Can you  figure out the bug?
 
 # To Do
 I need to write a program to walk and check for unclosed markers.
