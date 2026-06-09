@@ -5,16 +5,16 @@ USFM Checker - Validates USFM files for marker correctness.
 Checks for paired markers not explicitly closed and unknown markers.
 
 Usage:
-    python usfmChecker.py file.usfm
-    python usfmChecker.py *.usfm
-    python usfmChecker.py --no-unknown file.usfm
-    python usfmChecker.py --no-unclosed file.usfm
+    python usfmtools/usfmcheck.py file.usfm
+    python usfmtools/usfmcheck.py *.usfm
+    python usfmtools/usfmcheck.py --no-unknown file.usfm
+    python usfmtools/usfmcheck.py --no-unclosed file.usfm
 """
 
 import sys
 import io
 import click
-from usfmtools.usfmchecker import UsfmChecker
+from usfmtools.usfmcheckerlib import UsfmChecker
 
 
 if sys.stdout.encoding != 'utf-8':
